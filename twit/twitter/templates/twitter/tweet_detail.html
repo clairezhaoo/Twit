@@ -1,0 +1,22 @@
+{% extends "twitter/base.html" %}
+{% block content %}
+  <article class="media content-section">
+     <img class="img-circle" align="left" style="width:85px; height:85px" src="{{ object.author.profile.image.url }}">
+    <div class="article-metadata">
+      <a class="mr-2" href="#" style="margin-left: 15px">{{ object.author }}</a>
+      <small class="text-muted">{{ object.pub_date }}</small>
+
+      {% if object.author == user %}
+        <div>
+          <a class="btn btn-secondary bt-sm mt-1 mb-1" href="{% url 'twitter:update' object.id %}">Edit</a>
+          <a class="btn btn-danger bt-sm mt-1 mb-1" href="{% url 'twitter:delete' object.id %}">Delete</a>
+        </div>
+      {% endif %}
+
+    </div>
+    <div class="media-body">
+      <h3 style="margin-left: 15px">{{ object.tweet_text }}</h3>
+    </div>
+  </article>
+
+{% endblock content %}

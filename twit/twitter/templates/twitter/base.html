@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Twit</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'twitter/style.css'%}">
+
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="/">Twit</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="#">Page 1</a></li>
+
+            <!-- If user is logged in, display a log out route -->
+            {% if user.is_authenticated %}
+              <li><a href="/create/">New Tweet</a></li>
+              <li><a href="/profile/">Profile</a></li>
+              <li><a href="/logout/">Logout</a></li>
+            {% else %}
+              <li><a href="/login/">Login</a></li>
+              <li><a href="/register/">Register</a></li>
+            {% endif %}
+
+          </ul>
+        </div>
+      </nav>
+
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-9">
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+
+          {% block content %}{% endblock %}
+        </div>
+        <div class="col-md-3">
+          <div class="content-section">
+            <h3>Sidebar</h3>
+              <ul class="list-group">
+                <li class="list-group-item list-group-item-light">Latest Posts</li>
+                <li class="list-group-item list-group-item-light">Announcements</li>
+                <li class="list-group-item list-group-item-light">Calendars</li>
+                <li class="list-group-item list-group-item-light">etc</li>
+              </ul>
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+  </body>
+</html>

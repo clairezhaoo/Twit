@@ -1,0 +1,13 @@
+<!-- shows comments-->
+<h1> {{ tweet.tweet_text }}</h1>
+
+<ul>
+  {% for comment in tweet.comment_set.all %}
+  <li>
+    {{ comment.comment_text }}
+  </li>
+  {% endfor %}
+</ul>
+
+
+<a href="/twitter/{{tweet_id}}/">Return</a>
