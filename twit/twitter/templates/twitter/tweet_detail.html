@@ -8,6 +8,7 @@
 
       {% if object.author == user %}
         <div>
+          <br></br>
           <a class="btn btn-secondary bt-sm mt-1 mb-1" href="{% url 'twitter:update' object.id %}">Edit</a>
           <a class="btn btn-danger bt-sm mt-1 mb-1" href="{% url 'twitter:delete' object.id %}">Delete</a>
         </div>
@@ -18,5 +19,9 @@
       <h3 style="margin-left: 15px">{{ object.tweet_text }}</h3>
     </div>
   </article>
+
+  <article class="media content-section">
+    
+  <article>
 
 {% endblock content %}
